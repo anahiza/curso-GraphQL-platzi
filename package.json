@@ -1,0 +1,15 @@
+{
+  "name": "curso-GraphQL-platzi",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:anahiza/curso-GraphQL-platzi.git",
+  "author": "Anahi <anahi.z.a@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^1.1.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "graphql": "^0.10.5",
+    "graphql-tools": "^1.2.1"
+  }
+}
