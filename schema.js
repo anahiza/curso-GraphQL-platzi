@@ -1,10 +1,11 @@
-const {makeExecutableSchema, addMockFunctionToSchema} = require('graphql-tools')
+const {makeExecutableSchema, addMockFunctionsToSchema} = require('graphql-tools')
+const casual = require('casual')
 
 const datos = require('./datos_ejemplo')
 
 const typeDefs = `
 	union ResultadoBusqueda= Profesor | Curso
-	
+
 	#Esto es un curso en el sistema
 	type Curso {
 		id: ID!
@@ -50,12 +51,12 @@ const resolvers = {
 			return datos.cursos
 		}
 	},
-	
+
 	Curso: {
 		profesor: ()=>{
 			return {
 				nombre: "Pablo"
-			}					
+			}
 		}
 	}
 }
@@ -67,14 +68,23 @@ const schema = makeExecutableSchema({
 
 })
 
-addMockFunctionToSchema({
+addMockFunctionsToSchema({
 	schema,
 	mocks: {
 		Curso: function() {
-			return datos.cursos[1]
+			return {
+				id: casual.uuid,
+				titulo: casual.sentence,
+				descripcion: casual.sentences(3)
+			}
 		},
 		Profesor: function () {
-			return datos.profesores[1]
+			return {
+				nombre: casual.name,
+				id: casual.uuid,
+				nacionalidad: casual.country
+
+			}
 		}
 	}
 })
