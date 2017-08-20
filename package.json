@@ -11,10 +11,15 @@
     "express": "^4.15.4",
     "graphql": "^0.10.5",
     "graphql-tools": "^1.2.1",
-    "nodemon": "^1.11.0"
+    "knex": "^0.13.0",
+    "nodemon": "^1.11.0",
+    "objection": "^0.8.7",
+    "sqlite3": "^3.1.9"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "db:migrate": "knex migrate:latest --knexfile=db/knexfile.js",
+    "db:seed": "knex seed:run --knexfile=db/knexfile.js"
   },
   "devDependencies": {
     "casual": "^1.5.14"
