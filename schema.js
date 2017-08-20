@@ -1,4 +1,6 @@
-const {makeExecutableSchema} = require('graphql-tools')
+const {makeExecutableSchema, addMockFunctionToSchema} = require('graphql-tools')
+
+const datos = require('./datos_ejemplo')
 
 const typeDefs = `
 	union ResultadoBusqueda= Profesor | Curso
@@ -10,7 +12,7 @@ const typeDefs = `
 		#Esta es una breve descripcion del curso
 		descripcion: String!
 		profesor: Profesor
-		rating: Float
+		rating: Float @deprecated(reason: "no creemos más en los puntajes")
 		comentarios: [Comentario]
 	}
 
@@ -42,10 +44,39 @@ const typeDefs = `
 	}
 `
 
+const resolvers = {
+	Query: {
+		cursos: ()=>{
+			return datos.cursos
+		}
+	},
+	
+	Curso: {
+		profesor: ()=>{
+			return {
+				nombre: "Pablo"
+			}					
+		}
+	}
+}
+
 
 const schema = makeExecutableSchema({
-	typeDefs
+	typeDefs,
+	resolvers
 
+})
+
+addMockFunctionToSchema({
+	schema,
+	mocks: {
+		Curso: function() {
+			return datos.cursos[1]
+		},
+		Profesor: function () {
+			return datos.profesores[1]
+		}
+	}
 })
 
 module.exports = schema

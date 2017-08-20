@@ -13,7 +13,10 @@
     "graphql-tools": "^1.2.1",
     "nodemon": "^1.11.0"
   },
-  "scripts":{
+  "scripts": {
     "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "casual": "^1.5.14"
   }
 }
