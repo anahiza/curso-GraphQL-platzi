@@ -1,5 +1,7 @@
 const {makeExecutableSchema, addMockFunctionsToSchema} = require('graphql-tools')
 const casual = require('casual')
+const Curso = require('./db/models/Curso')
+const Profesor = require('./db/models/Profesor')
 
 const datos = require('./datos_ejemplo')
 
@@ -48,7 +50,17 @@ const typeDefs = `
 const resolvers = {
 	Query: {
 		cursos: ()=>{
-			return datos.cursos
+			return Curso.query()
+		},
+		profesores: () => {
+			return Profesor.query()
+
+		},
+		curso:(rootValue, args) => {
+			Curso.query().findById(args.id)
+		},
+		profesor: (rootValue, args) => {
+			Profesor.query().findById(args.id)
 		}
 	},
 
@@ -68,7 +80,7 @@ const schema = makeExecutableSchema({
 
 })
 
-addMockFunctionsToSchema({
+/*addMockFunctionsToSchema({
 	schema,
 	mocks: {
 		Curso: function() {
@@ -88,5 +100,5 @@ addMockFunctionsToSchema({
 		}
 	}
 })
-
+*/
 module.exports = schema
