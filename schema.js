@@ -50,25 +50,17 @@ const typeDefs = `
 const resolvers = {
 	Query: {
 		cursos: ()=>{
-			return Curso.query()
+			return Curso.query().eager('[profesor, comentarios]')
 		},
 		profesores: () => {
-			return Profesor.query()
+			return Profesor.query().eager('cursos')
 
 		},
-		curso:(rootValue, args) => {
-			Curso.query().findById(args.id)
+		curso: (rootValue, args) => {
+			Curso.query().eager('[profesor, comentarios]').findById(args.id)
 		},
 		profesor: (rootValue, args) => {
-			Profesor.query().findById(args.id)
-		}
-	},
-
-	Curso: {
-		profesor: ()=>{
-			return {
-				nombre: "Pablo"
-			}
+			Profesor.query().eager('cursos').findById(args.id)
 		}
 	}
 }
