@@ -20,6 +20,10 @@ const rootQuery = `
 		profesorAdd(profesor: NuevoProfesor): Profesor
 		profesorEdit(profesorId: Int!, profesor: ProfesorEdit): Profesor
 		profesorDel(profesorId: Int!): Profesor
+
+		cursoAdd(curso: NuevoCurso): Curso
+		cursoEdit(cursoId: Int!, curso: CursoEdit):Curso
+		cursoDel(cursoId: Int!): Curso
 	}
 `
 const schema = makeExecutableSchema({

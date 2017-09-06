@@ -15,4 +15,14 @@ module.exports= `#Esto es un curso en el sistema
 		cuerpo: String!
 	}
 
+	input NuevoCurso {
+		titulo: String!
+		descripcion: String!
+	}
+
+	input CursoEdit {
+		titulo: String!
+		descripcion: String!
+	}
+
 	`
