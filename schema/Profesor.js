@@ -11,4 +11,10 @@ module.exports = `type Profesor {
 		FEMENINO
 	}
 
+	input NuevoProfesor {
+		nombre: String!
+		nacionalidad: String!
+		genero: Genero
+	}
+
 	`

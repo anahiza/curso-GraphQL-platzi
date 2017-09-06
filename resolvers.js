@@ -16,6 +16,13 @@ const resolvers = {
 		profesor: (rootValue, args) => {
 			Profesor.query().eager('cursos').findById(args.id)
 		}
+	},
+
+	Mutation: {
+		profesorAdd: (_, args) => {
+			return Profesor.query().insert(args.profesor)
+		}
+
 	}
 }
 module.exports=resolvers
