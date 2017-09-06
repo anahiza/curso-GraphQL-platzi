@@ -19,6 +19,7 @@ const rootQuery = `
 	type Mutation {
 		profesorAdd(profesor: NuevoProfesor): Profesor
 		profesorEdit(profesorId: Int!, profesor: ProfesorEdit): Profesor
+		profesorDel(profesorId: Int!): Profesor
 	}
 `
 const schema = makeExecutableSchema({
