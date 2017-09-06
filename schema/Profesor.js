@@ -17,4 +17,9 @@ module.exports = `type Profesor {
 		genero: Genero
 	}
 
+	input ProfesorEdit{
+		nombre: String
+		genero: Genero
+		nacionalidad: String
+	}
 	`
